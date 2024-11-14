@@ -1,48 +1,63 @@
 # P3HW2- Salary Calculator
-
+# Aiden Canady
 # request employee information
 
-name = input("Enter employee's name: ")
-hoursWorked = float(input("Enter number of hours worked: "))
+numEmploy = 0
+totalOvertime = 0.0
+totalReg = 0.0
+totalGross = 0.0
+name = input("Enter employee's name or 'Done' to terminate: ")
 
-payRate = float(input("Enter employee's pay rate: "))
+while name.lower() != "done":
+    hoursWorked = float(input(f"Enter number of hours {name} worked: "))
 
-#evalute overtime
+    payRate = float(input(f"Enter {name}'s pay rate: "))
 
-if hoursWorked >40 :
+    #evalute overtime
 
-    #calculate overtime
-    overtimeHours = hoursWorked - 40
-    #Calculate overPay
-    overPay = overtimeHours * (payRate * 1.5)
+    if hoursWorked >40 :
 
-    #calculate salary for reg hours
+        #calculate overtime
+        overtimeHours = hoursWorked - 40
+        #Calculate overPay
+        overPay = overtimeHours * (payRate * 1.5)
 
-    regPay = 40 * payRate
+        #calculate salary for reg hours
 
-    # calculate gross pay
+        regPay = 40 * payRate
 
-    grossPay = regPay + overPay
-else:
+        # calculate gross pay
 
-    overPay = 0
-    overtimeHours = 0
+        grossPay = regPay + overPay
+    else:
 
-    regPay = hoursWorked * payRate
-    grossPay = regPay
+        overPay = 0
+        overtimeHours = 0
 
-# Display output
+        regPay = hoursWorked * payRate
+        grossPay = regPay
 
-print("-------------------------------------")
-print("Employee name:  ",name,"\n")
+    numEmploy += 1
+    totalOvertime += overPay
+    totalReg += regPay
+    totalGross += grossPay
 
-print(f'{"Hours Worked":<15}{"Pay Rate":<12}{"OverTime":<12}{"OverTime Pay":<20}{"RegHour Pay":<20}{"Gross Pay"}')
-print('--------------------------------------------------------------------------------------------------')
-print(f'{hoursWorked:<15}{payRate:<12}{overtimeHours:<12}{overPay:<20}{"$"}{regPay:<20.2f}{"$"}{grossPay:.2f}')
+    # Display output
 
+    print("-------------------------------------")
+    print("Employee name:  ",name,"\n")
 
+    print(f'{"Hours Worked":<15}{"Pay Rate":<12}{"OverTime":<12}{"OverTime Pay":<20}{"RegHour Pay":<20}{"Gross Pay"}')
+    print('--------------------------------------------------------------------------------------------------')
+    print(f'{hoursWorked:<15}{payRate:<12}{overtimeHours:<12}{overPay:<20}{"$"}{regPay:<20.2f}{"$"}{grossPay:.2f}')
+    print()
+    name = input("Enter employee's name or 'Done' to terminate: ")
 
-
+print()
+print(f"Total number of employees entered: {numEmploy}")
+print(f"Total amount of overtime paid: ${totalOvertime:.2f}")
+print(f"Total amount paid for regular hours: ${totalReg:.2f}")
+print(f"Total amount paid in gross: ${totalGross:.2f}")
 
 
     
