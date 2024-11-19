@@ -12,11 +12,16 @@ letter_grade = ""
 for i in range(enter_grades):
     inc = i + 1
     module_grades.append(float(input(f"Enter the grade for Module {inc}: ")))
-    if module_grades[i] < 0:
-        print("This program does not support negative numbers.")
-        module_grades.remove(min(module_grades))
-        module_grades.append(float(input(f"Enter the grade for Module {inc} again: ")))
-
+    if module_grades[i] < 0 or module_grades[i] > 100:
+        while module_grades[i] < 0 or module_grades[i] > 100:
+            print("This program does not support numbers under 0 and over 100.")
+            if module_grades[i] > 100:
+                module_grades.remove(max(module_grades))
+                module_grades.append(float(input(f"Enter the grade for Module {inc} again: ")))
+            else:
+                module_grades.remove(min(module_grades))
+                module_grades.append(float(input(f"Enter the grade for Module {inc} again: ")))
+      
 # Display the lowest, highest, sum, and average of the grades
 print()
 print("Grades Summary:")
